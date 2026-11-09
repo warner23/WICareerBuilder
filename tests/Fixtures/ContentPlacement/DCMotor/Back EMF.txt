@@ -1,0 +1,1 @@
+Back emf in a dc motor opposes the applied supply and is fundamental to the operating principle and speed torque characteristics of the direct current machine. Counter emf changes with flux and rotational speed.

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <AssemblyName>WICareerBuilder</AssemblyName>
+    <RootNamespace>WICareerBuilder.Desktop</RootNamespace>
+    <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
+    <AssemblyTitle>WICareerBuilder</AssemblyTitle>
+    <Product>WICareerBuilder</Product>
+    <Company>WICareerBuilder</Company>
+    <Description>Local-first learning, evidence and career workbench.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WICareerBuilder.Core\WICareerBuilder.Core.csproj" />
+    <ProjectReference Include="..\WICareerBuilder.Data\WICareerBuilder.Data.csproj" />
+    <ProjectReference Include="..\WICareerBuilder.Documents\WICareerBuilder.Documents.csproj" />
+    <ProjectReference Include="..\WICareerBuilder.Learning\WICareerBuilder.Learning.csproj" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4078.44" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\AppIcon.ico" />
+    <Content Include="UI\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,28 @@
+<Window x:Class="WICareerBuilder.Desktop.Viewers.VideoPlayerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Video - WICareerBuilder" Width="800" Height="500" MinWidth="560" MinHeight="360" ResizeMode="CanResize"
+        WindowStartupLocation="CenterOwner" Background="#0A0F1E">
+    <Grid Margin="18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border Background="#050914" CornerRadius="14" BorderBrush="#273348" BorderThickness="1">
+            <MediaElement x:Name="Player" LoadedBehavior="Manual" UnloadedBehavior="Manual" Stretch="Uniform"
+                          MediaOpened="OnMediaOpened" MediaFailed="OnMediaFailed" />
+        </Border>
+        <StackPanel Grid.Row="1" Margin="0,14,0,0">
+            <Slider x:Name="Position" Minimum="0" Maximum="1" ValueChanged="OnPositionChanged" />
+            <DockPanel Margin="0,10,0,0">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                    <Button Content="Play" Click="OnPlay" Padding="16,8" Margin="0,0,8,0" />
+                    <Button Content="Pause" Click="OnPause" Padding="16,8" Margin="0,0,8,0" />
+                    <Button Content="Stop" Click="OnStop" Padding="16,8" Margin="0,0,8,0" />
+                    <Button Content="Open externally" Click="OnOpenExternal" Padding="16,8" />
+                </StackPanel>
+                <TextBlock x:Name="TimeText" DockPanel.Dock="Right" Foreground="#D5DEEA" VerticalAlignment="Center" Text="00:00 / 00:00" />
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</Window>

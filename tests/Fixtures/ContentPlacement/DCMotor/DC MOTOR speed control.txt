@@ -1,0 +1,1 @@
+DC motor speed control can use armature voltage control, field control and Ward Leonard methods. The notes compare speed regulation, operating range and practical control of a direct current motor under load.

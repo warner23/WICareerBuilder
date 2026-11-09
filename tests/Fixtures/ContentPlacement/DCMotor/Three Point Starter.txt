@@ -1,0 +1,1 @@
+A three point starter limits the high starting current of a dc motor and provides no-volt and overload protection. Its armature, field and holding-coil connections allow controlled starting while retaining normal motor protection.

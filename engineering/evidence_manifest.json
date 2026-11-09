@@ -1,0 +1,32 @@
+{
+  "schema": "CB_EVIDENCE_G2R2_V1",
+  "private_evidence": true,
+  "milestones": [
+    {
+      "id": "G0",
+      "status": "SOURCE_IDENTIFIED",
+      "notes": "Prior Dell run"
+    },
+    {
+      "id": "G1R3",
+      "status": "PASS_81_TESTS",
+      "notes": "Prior Dell run"
+    },
+    {
+      "id": "G2",
+      "status": "PASS_81_TESTS_PUBLIC_CANDIDATE",
+      "notes": "Prior Dell run"
+    },
+    {
+      "id": "G2R2",
+      "status": "TECHNICAL_PASS_MANUAL_REVIEW_OPEN",
+      "tests": "PASS_81_OR_MORE_TESTS",
+      "notes": "Local evidence folder only; public release not approved"
+    },
+    {
+      "id": "G2R3",
+      "status": "PRIVATE_SOURCE_EXPORT_SHA_VERIFIED",
+      "notes": "318 original source files verified; this curated publication candidate requires fresh Windows build/tests"
+    }
+  ]
+}

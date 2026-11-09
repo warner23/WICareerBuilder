@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WICareerBuilder</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark brand-mark-image"><img src="assets/wicareerbuilder-mark.svg" alt="WICareerBuilder"></div><div><strong>WICareerBuilder</strong><span>Your Learning · Your Evidence · Your Career</span></div></div>
+    <nav class="main-nav grouped-nav">
+      <span class="nav-group-label">Overview</span>
+      <button class="nav-btn active" data-view="home"><span>⌂</span>Dashboard</button>
+      <button class="nav-btn" data-view="mylearning"><span>▶</span>My Learning</button>
+
+      <span class="nav-group-label">Knowledge</span>
+      <button class="nav-btn" data-view="subjects"><span>◇</span>Subjects</button>
+      <div id="subjectNavTree" class="subject-nav-tree"><span class="subject-nav-loading">Loading discovered subjects…</span></div>
+      <button class="nav-btn" data-view="courses"><span>▤</span>Courses</button>
+      <button class="nav-btn" data-view="library"><span>▣</span>Library</button>
+
+      <span class="nav-group-label">Build & prove</span>
+      <button class="nav-btn" data-view="projects"><span>▱</span>Projects</button>
+      <button class="nav-btn" data-view="skills"><span>◆</span>Skills</button>
+      <button class="nav-btn" data-view="evidence"><span>✓</span>Evidence</button>
+      <button class="nav-btn" data-view="qualifications"><span>⌑</span>Qualifications</button>
+      <button class="nav-btn" data-view="certifications"><span>✦</span>Certifications</button>
+
+      <span class="nav-group-label">Career</span>
+      <button class="nav-btn" data-view="careerpaths"><span>↗</span>Career Paths</button>
+      <button class="nav-btn" data-view="cvs"><span>≡</span>CVs</button>
+      <button class="nav-btn" data-view="portfolio"><span>◫</span>Portfolio</button>
+      <button class="nav-btn" data-view="learningplans"><span>◎</span>Learning Plans</button>
+
+      <span class="nav-group-label">Tools</span>
+      <button class="nav-btn" data-view="search"><span>⌕</span>Search</button>
+      <button class="nav-btn" data-view="settings"><span>⚙</span>Settings</button>
+    </nav>
+    <div class="sidebar-footer"><small>CareerBuilder understands and creates. WILearningLabs is the single learning-delivery zone.</small><div id="version" class="version">v1.0.0</div></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar"><div><p class="eyebrow">WICareerBuilder</p><h1 id="pageTitle">Dashboard</h1></div><div class="topbar-search"><input id="globalSearch" type="search" placeholder="Search your knowledge library…" aria-label="Search CareerBuilder"><button id="globalSearchButton" class="secondary-btn">Search</button></div><div class="top-actions"><span class="status-dot"></span><span>Local / offline</span></div></header>
+
+    <section id="view-home" class="view active">
+      <div class="hero compact-hero">
+        <div><span class="pill">WICareerBuilder v1.0.0 · Local-first</span><h2>Understand it.<br>Prove it. Use it.</h2><p>CareerBuilder turns a large personal archive into subjects, courses, knowledge maps, projects and evidence. It authors structured learning for WILearningLabs without becoming a second learning zone.</p><div class="hero-actions"><button class="primary-btn" data-go="subjects">Explore subjects</button><button class="secondary-btn" data-go="projects">Open projects</button><button class="secondary-btn" data-go="library">Open library</button></div></div>
+        <div class="orbit"><div class="orbit-ring"><i>LIB</i></div><div class="orbit-ring ring-2"><i>LEARN</i></div><div class="orbit-ring ring-3"><i>CV</i></div><div class="orbit-core">WI</div></div>
+      </div>
+      <div class="section-heading"><h2>Workbench at a glance</h2><p>These counts describe the archive and what CareerBuilder can recover from it. They are not a learning-progress score.</p></div>
+      <div id="dashboardCards" class="metric-grid"></div>
+      <div id="workbenchOpportunityGrid" class="workbench-opportunity-grid"></div>
+      <div class="architecture-flow"><span>Library</span><b>→</b><span>Knowledge Map</span><b>→</b><span>Course Authoring</span><b>→</b><span>WILearningLabs</span><b>→</b><span>Evidence</span><b>→</b><span>Career</span></div><div class="foundation-note"><strong>v0.7 product rule</strong><p>CareerBuilder may use hundreds of resources to understand a subject, but a finished lesson should contain only the small, reviewed set needed to teach it well. Original files remain untouched, and WILearningLabs remains the single learner-facing delivery environment.</p></div>
+    </section>
+
+    <section id="view-mylearning" class="view">
+      <div class="section-heading first"><h2>My Learning</h2><p>Planning and continuity, not a second lesson player. CareerBuilder prepares learning; WILearningLabs delivers it.</p></div>
+      <div id="myLearningStats" class="metric-grid"></div>
+      <div class="learning-bridge-grid">
+        <article class="tool-card bridge-card"><p class="eyebrow">CareerBuilder</p><h3>Prepare what to learn</h3><p>Use your library, knowledge map, gaps and projects to decide what should become a course, lesson, revision pack or evidence project.</p><button class="secondary-btn" data-go="subjects">Explore subjects</button></article>
+        <article class="tool-card bridge-card"><p class="eyebrow">WILearningLabs</p><h3>Learn in one focused zone</h3><p>Published WI Learning Packages are designed for fast lessons, practice, quizzes, revision and offline use without duplicating learning progress inside CareerBuilder.</p><span class="tag">Single learning zone</span></article>
+        <article class="tool-card bridge-card"><p class="eyebrow">Next step</p><h3>Build a learning package</h3><p>Create manually or let CareerBuilder propose a course from reviewed source material. You approve the structure before anything is published.</p><button class="secondary-btn" data-go="create">Open authoring</button></article>
+      </div>
+    </section>
+
+    <section id="view-subjects" class="view">
+      <div class="section-heading first"><h2>Subjects</h2><p>Discovered knowledge areas, courses and subjects from your indexed collection. The source folders do not have to match this virtual structure.</p></div>
+      <div id="subjectFocusPanel" class="subject-focus-panel" hidden></div>
+      <div id="subjectTopicSection" class="subject-topic-section" hidden><div class="section-heading compact-heading"><h3>Topics & subtopics</h3><p>Open a topic to see all related resources regardless of where those files live physically.</p></div><div id="subjectTopicGrid" class="topic-browser-grid"></div></div>
+      <div id="subjectOverviewStats" class="knowledge-summary-grid"></div>
+      <div id="subjectGrid" class="subject-browser-grid"></div>
+      <div class="foundation-note"><strong>Dynamic subject rule</strong><p>Subjects shown here come from CareerBuilder's knowledge model. As classification improves, Engineering, Cyber Security, Chemistry, Chess, Sign Language and any other genuine subject can appear without hard-coding the menu.</p></div>
+    </section>
+
+    <section id="view-courses" class="view">
+      <div class="section-heading first"><h2>Courses</h2><p>A course may be a current programme, an old college/university course, a reconstructed collection or a hobby learning path.</p></div>
+      <div class="course-authoring-callout tool-card"><div><p class="eyebrow">Two authoring routes</p><h3>Manual or AI-assisted — both reviewed by you</h3><p class="muted">Build modules yourself, or let CareerBuilder analyse the subject and propose a coherent course. AI proposals remain Draft until approved.</p></div><button class="secondary-btn" data-go="create">Create learning course</button></div>
+      <div id="courseGrid" class="subject-browser-grid"></div>
+    </section>
+
+    <section id="view-skills" class="view">
+      <div class="section-heading first"><h2>Skills</h2><p>Skills are backed by evidence stages, not inferred from filenames or test scores.</p></div><div id="skillsStats" class="metric-grid"></div>
+      <div class="career-product-grid"><article class="tool-card"><p class="eyebrow">New skill</p><div class="stack-form"><input id="careerSkillName" placeholder="Skill name"><input id="careerSkillCategory" placeholder="Category"><textarea id="careerSkillDescription" placeholder="What does this skill mean in your evidence model?"></textarea><button id="createCareerSkill" class="primary-btn">Add skill</button></div></article><article class="tool-card"><p class="eyebrow">Evidence stages</p><h3>Mentioned → Studied → Practised → Demonstrated</h3><p>Demonstrated project/employment evidence may become CV-ready only after the evidence itself supports it and you approve it.</p></article></div><div id="careerSkillList" class="career-record-list"></div>
+    </section>
+
+    <section id="view-evidence" class="view">
+      <div class="section-heading first"><h2>Evidence</h2><p>Evidence is stored separately from skills, qualifications and CV claims so one artefact can support several truthful claims without becoming one automatically.</p></div><div id="evidenceStats" class="metric-grid"></div>
+      <div class="career-product-grid"><article class="tool-card"><p class="eyebrow">Add evidence</p><div class="stack-form"><input id="evidenceTitle" placeholder="Evidence title"><select id="evidenceKind"><option>ProjectTest</option><option>Coursework</option><option>Document</option><option>InternalQuiz</option><option>ExternalQualification</option><option>ExternalCertification</option></select><select id="evidenceStage"><option>Mentioned</option><option>Studied</option><option>Practised</option><option>DemonstratedCoursework</option><option>DemonstratedProject</option><option>DemonstratedEmployment</option><option>QualificationEvidence</option></select><textarea id="evidenceDescription" placeholder="What does this prove?"></textarea><select id="evidenceSkill"><option value="">No skill link yet</option></select><label class="check-row"><input id="evidencePractical" type="checkbox"> Practical / physical evidence exists</label><label class="check-row"><input id="evidenceUnderstanding" type="checkbox"> Understanding demonstrated</label><select id="evidenceVerification"><option>Unverified</option><option>Reviewed</option><option>UserConfirmed</option></select><label>Privacy<select id="evidencePrivacy"><option>Private</option><option>Local</option><option>Portfolio eligible</option><option>WebAllowed</option></select></label><label class="check-row"><input id="evidenceNoWeb" type="checkbox" checked> No web / external processing</label><button id="createCareerEvidence" class="primary-btn">Save evidence</button></div></article><article class="tool-card"><p class="eyebrow">Hard boundary</p><h3>An internal quiz is never a qualification</h3><p>CareerBuilder can record knowledge evidence from quizzes, but the policy explicitly blocks them from qualification/certification or CV-ready claims.</p></article></div><div id="careerEvidenceList" class="career-record-list"></div>
+    </section>
+
+    <section id="view-qualifications" class="view">
+      <div class="section-heading first"><h2>Qualifications</h2><p>Only genuinely awarded qualifications may be stored as held. Incomplete study stays study history.</p></div><div id="qualificationStats" class="metric-grid"></div><div class="career-product-grid"><article class="tool-card"><p class="eyebrow">Record qualification</p><div class="stack-form"><input id="qualificationTitle" placeholder="Qualification title"><input id="qualificationIssuer" placeholder="Awarding institution"><select id="qualificationStatus"><option>Held</option><option>InProgress</option><option>Incomplete</option></select><select id="qualificationVerification"><option>Unverified</option><option>UserConfirmed</option><option>Verified</option></select><label class="check-row"><input id="qualificationConfirmed" type="checkbox"> I confirm this qualification status is accurate</label><button id="createQualification" class="primary-btn">Save qualification</button></div></article><article class="tool-card"><p class="eyebrow">Truth boundary</p><h3>Study ≠ award</h3><p>Recovered coursework can support knowledge/evidence without being represented as a completed qualification.</p></article></div><div id="qualificationList" class="career-record-list"></div>
+    </section>
+
+    <section id="view-certifications" class="view">
+      <div class="section-heading first"><h2>Certifications</h2><p>External certifications remain separate from CareerBuilder tests and internal learning evidence.</p></div><div id="certificationStats" class="metric-grid"></div><div class="career-product-grid"><article class="tool-card"><p class="eyebrow">Record certification</p><div class="stack-form"><input id="certificationTitle" placeholder="Certification title"><input id="certificationIssuer" placeholder="External issuer"><select id="certificationStatus"><option>Held</option><option>Expired</option><option>InProgress</option></select><select id="certificationVerification"><option>Unverified</option><option>UserConfirmed</option><option>Verified</option></select><label class="check-row"><input id="certificationConfirmed" type="checkbox"> I confirm this certification status is accurate</label><button id="createCertification" class="primary-btn">Save certification</button></div></article><article class="tool-card"><p class="eyebrow">Hard rule</p><h3>CareerBuilder cannot certify you</h3><p>Internal quizzes and project assessments never become external certifications.</p></article></div><div id="certificationList" class="career-record-list"></div>
+    </section>
+
+    <section id="view-careerpaths" class="view">
+      <div class="section-heading first"><h2>Career Paths</h2><p>Compare what you can genuinely evidence against realistic roles and progression routes without confusing career routes with the subject hierarchy.</p></div>
+      <div id="careerPathStats" class="metric-grid"></div>
+      <div class="create-grid"><article class="tool-card create-card"><p class="eyebrow">Gap analysis</p><h3>What is missing?</h3><p>Identify missing knowledge, practical evidence, qualifications or experience and turn those gaps into concrete next actions.</p><button class="secondary-btn" data-go="learningplans">Build learning plan</button></article><article class="tool-card create-card"><p class="eyebrow">Education progression</p><h3>College / university options</h3><p>CareerBuilder may later research current official course requirements and compare them to your actual profile — never infer admission.</p><span class="tag">Web research later</span></article></div>
+    </section>
+
+    <section id="view-cvs" class="view">
+      <div class="section-heading first"><h2>CVs</h2><p>Multiple career-specific CVs draw from one master evidence record. Nothing enters a CV until the source evidence is both recommended and explicitly approved.</p></div><div id="masterEvidenceStats" class="metric-grid"></div><div class="career-product-grid"><article class="tool-card"><p class="eyebrow">New CV</p><div class="stack-form"><input id="careerCvName" placeholder="CV name"><input id="careerCvRole" placeholder="Target role"><select id="careerCvFocus"><option>Engineering</option><option>Software</option><option>Cyber Security</option><option>General</option></select><button id="createCareerCv" class="primary-btn">Create CV</button></div></article><article class="tool-card"><p class="eyebrow">Master record</p><h3>One truth, several views</h3><p>Projects, evidence and credentials remain master records. CVs select approved material rather than duplicating or changing the source truth.</p></article></div><div class="career-product-grid"><article class="tool-card"><p class="eyebrow">Add approved evidence to a CV</p><div class="stack-form"><select id="careerCvSelect"></select><select id="cvEvidenceSelect"></select><input id="cvEvidenceHeading" placeholder="Section heading, e.g. Projects"><textarea id="cvEvidenceStatement" placeholder="Evidence-backed CV statement"></textarea><button id="addEvidenceToCareerCv" class="secondary-btn">Add approved evidence</button></div></article></div><div id="careerCvList" class="career-record-list"></div>
+    </section>
+
+    <section id="view-portfolio" class="view">
+      <div class="section-heading first"><h2>Portfolio</h2><p>Portfolio drafts explain problem → design → build → test → troubleshooting → result while staying private until explicitly approved for export.</p></div><div id="portfolioStats" class="metric-grid"></div><div class="career-product-grid"><article class="tool-card"><p class="eyebrow">New portfolio draft</p><div class="stack-form"><select id="portfolioProject"></select><input id="portfolioTitle" placeholder="Portfolio title"><textarea id="portfolioProblem" placeholder="Problem / goal"></textarea><textarea id="portfolioResult" placeholder="Result / current state"></textarea><button id="createPortfolioEntry" class="primary-btn">Create private draft</button></div></article><article class="tool-card"><p class="eyebrow">Development journal</p><h3>Failures remain evidence, not CV clutter</h3><p>Private project history can preserve failed attempts, diagnosis, fixes and lessons. Portfolio drafts can later select the useful story without erasing the engineering trail.</p></article></div><div id="portfolioList" class="career-record-list"></div>
+    </section>
+
+    <section id="view-learningplans" class="view">
+      <div class="section-heading first"><h2>Learning Plans</h2><p>Turn knowledge gaps, career goals and project requirements into an ordered path without duplicating WILearningLabs' lesson-delivery role.</p></div>
+      <div class="learning-plan-flow"><div><strong>1</strong><span>Goal</span></div><div><strong>2</strong><span>Current evidence</span></div><div><strong>3</strong><span>Knowledge gaps</span></div><div><strong>4</strong><span>Projects / study</span></div><div><strong>5</strong><span>Publish learning</span></div><div><strong>6</strong><span>Reassess</span></div></div>
+      <div class="tool-card"><p class="eyebrow">Author once</p><h3>CareerBuilder designs the route; LearningLabs runs the learning</h3><p class="muted">A plan can point to existing LearningLabs packages, recommend a new package, or recommend an evidence project when studying alone is not enough.</p></div>
+    </section>
+
+    <section id="view-search" class="view">
+      <div class="section-heading first"><h2>Search</h2><p>Search the indexed library by filename, path and current subject/topic organisation. Semantic content search will deepen as source reconstruction develops.</p></div>
+      <div class="search-workbench tool-card"><div class="search-row"><input id="careerSearchBox" type="search" placeholder="Try: DC motors, cryptography, ONC engineering…"><button id="careerSearchButton" class="primary-btn">Search</button></div><p id="careerSearchSummary" class="muted">Enter a subject, topic, filename or note.</p></div>
+      <div id="careerSearchResults" class="search-results"></div>
+    </section>
+
+    <section id="view-settings" class="view">
+      <div class="section-heading first"><h2>Settings & Workbench Tools</h2><p>The everyday menu stays focused. Foundation, analysis and migration tools remain available here without losing the work already built in v0.6.</p></div>
+      <div class="settings-grid">
+        <button class="settings-card" data-go="sources"><span>⌁</span><strong>Library Sources</strong><small>Add folders, discover files and review exclusions.</small></button>
+        <button class="settings-card" data-go="roles"><span>◫</span><strong>Resource Roles</strong><small>Manage reusable roles such as coursework, references and evidence candidates.</small></button>
+        <button class="settings-card" data-go="workspace"><span>◇</span><strong>Knowledge Map</strong><small>Inspect the current database-backed knowledge hierarchy.</small></button>
+        <button class="settings-card" data-go="sourceanalysis"><span>≋</span><strong>Source Analysis</strong><small>Inspect deliberate analysis staging and raw fragments.</small></button>
+        <button class="settings-card" data-go="create"><span>✦</span><strong>Learning Authoring</strong><small>Manual and AI-assisted course/lesson creation foundation.</small></button>
+        <button class="settings-card" data-go="export"><span>⇥</span><strong>WILearningLabs Export</strong><small>WI Learning Package bridge and future offline import.</small></button>
+        <button class="settings-card" data-go="candidates"><span>⚗</span><strong>Prototype Review</strong><small>Preserved v0.5 extracted candidates for inspection/recomposition.</small></button>
+        <button class="settings-card" data-go="learning"><span>◈</span><strong>Prototype Study</strong><small>Preserved v0.5 modules — not the final learner environment.</small></button>
+        <button class="settings-card" data-go="updates"><span>↻</span><strong>Updates</strong><small>Validate and stage WICareerBuilder update packages.</small></button>
+        <button class="settings-card" data-go="about"><span>i</span><strong>About</strong><small>Architecture and local data information.</small></button>
+      </div>
+    </section>
+
+    <section id="view-library" class="view">
+      <div class="section-heading first"><h2>Library</h2><p>Your discovered archive. Physical file type, subject placement and useful role are separate ideas.</p></div><div class="library-shortcuts"><button class="secondary-btn" data-go="sources">Add / manage folders</button><button class="secondary-btn" data-go="roles">Resource roles</button><button class="secondary-btn" data-go="sourceanalysis">Source analysis</button></div>
+      <section class="tool-card staged-scanner-card">
+        <div class="staged-scanner-head"><div><p class="eyebrow">v0.9.2 staged scanner</p><h3>Discovery policy first. Deep scan only accepted material.</h3><p class="muted">Rescan identifies New, Modified, Unchanged and Missing resources, then applies Include / Review / Exclude / Learning Collection rules. Only accepted Include resources in the Learning or Both lane enter fingerprinting and structured-content analysis; pure Project Artifacts stay out of the learning queue. v0.9.2 adds hierarchical confidence and concept-aware placement: subject, topic and subtopic must earn confidence independently; confident parent levels can be applied while a weaker child remains review-only; concept anchors such as three/four-point starters, DC motor types and stepper types improve semantic placement without moving originals or overwriting manual organisation.</p></div><label>Library<select id="scannerSourceFilter"><option value="">All active libraries</option></select></label></div>
+        <div id="scannerMetrics" class="scanner-metrics"><span class="muted">Loading scanner state…</span></div>
+        <div class="staged-scanner-actions"><button id="refreshScanner" class="secondary-btn">Refresh state</button><button id="fingerprintScannerBatch" class="secondary-btn">Fingerprint next 100</button><button id="analyseScannerBatch" class="secondary-btn">Analyse next 25 structured files</button></div>
+        <div class="content-placement-row">
+          <label>Placement focus<input id="contentPlacementFocus" type="search" placeholder="e.g. dc motor"></label>
+          <button id="contentPlacementFocusButton" class="primary-btn">Analyse + place focus</button>
+          <button id="contentPlacementNextButton" class="secondary-btn">Analyse + place next 25</button>
+        </div>
+        <div id="contentPlacementReport" class="content-placement-report" hidden></div>
+        <div class="analysis-note"><strong>Safety boundary</strong><p>This does not move, rename or delete original files. Focus text only chooses which candidate files to inspect first; placement itself is derived from extracted content. Only high-confidence placements are applied automatically. Existing organised resources are protected, ambiguous results become review proposals, and legacy .doc/.ppt/.xls extraction remains limited-confidence.</p></div>
+      </section>
+      <div class="library-bulk-toolbar">
+        <label class="check-label"><input id="selectAllResources" type="checkbox"> Select batch (up to 250)</label>
+        <span id="selectedResourceCount" class="muted">0 selected</span>
+        <div class="library-bulk-actions">
+          <button id="bulkOrganise" class="secondary-btn" disabled>Organise selected</button>
+          <select id="bulkRoleSelect" aria-label="Resource role"><option value="">Assign a role…</option></select>
+          <button id="bulkAssignRole" class="secondary-btn" disabled>Assign role</button>
+          <button id="bulkCreateStudy" class="secondary-btn prototype-action" disabled hidden>Prototype Study</button>
+          <button id="bulkExtractLearning" class="secondary-btn prototype-action" disabled hidden>Prototype Extract</button>
+        </div>
+      </div>
+      <div class="toolbar organisation-toolbar">
+        <input id="searchBox" class="search" type="search" placeholder="Search filename, folder, topic or notes…">
+        <select id="kindFilter"><option value="">All file types</option><option>Document</option><option>Presentation</option><option>Spreadsheet</option><option>Video</option><option>Audio</option><option>Image</option><option>Archive</option></select>
+        <select id="statusFilter"><option value="">All organisation states</option><option>Unsorted</option><option>Useful</option><option>Study later</option><option>Reference</option><option>Ignore</option></select>
+        <button id="refreshLibrary" class="secondary-btn">Refresh</button>
+      </div>
+      <div id="librarySummary" class="muted"></div>
+      <div id="resourceList" class="resource-list"></div>
+    </section>
+
+    <section id="view-roles" class="view">
+      <div class="section-heading first"><h2>Resource Roles</h2><p>What a file is is separate from what CareerBuilder can use it for. One resource can have several roles.</p></div>
+      <div class="tool-card"><div class="workbench-callout"><div><p class="eyebrow">v0.6 model</p><h3>Roles are reusable relationships, not folders</h3><p class="muted">An old assignment can remain Old Coursework while also being a Question Source and a Career Evidence Candidate. A PowerPoint can remain a Teaching Presentation while contributing to a future lesson.</p></div></div></div>
+      <div id="resourceRoleGrid" class="role-grid"></div>
+    </section>
+
+    <section id="view-workspace" class="view">
+      <div class="section-heading first"><h2>Knowledge Map</h2><p>This is archive organisation — not a career path. Knowledge Area → Course/Collection → Subject → Topic.</p></div>
+      <div id="knowledgeMapSummary" class="knowledge-summary-grid"></div>
+      <div class="workspace-head tool-card"><div><p class="eyebrow">Knowledge area / course</p><h3 id="workspaceCourseTitle">Engineering → ONC Engineering</h3><p class="muted">Subjects and topics organise what your archive contains. A separate Career Paths engine will later compare this accepted knowledge/evidence against real job routes.</p></div><button id="addWorkspaceSubject" class="secondary-btn">Add subject</button></div>
+      <div class="section-heading"><h2>Subjects</h2></div>
+      <div id="workspaceSubjects" class="workspace-grid"></div>
+      <div class="section-heading"><h2>Useful resource views</h2></div>
+      <div id="workspaceLibraries" class="workspace-grid"></div>
+      <div class="tool-card prototype-warning"><div><p class="eyebrow">Prototype material preserved</p><h3><span id="draftCandidateCount">0</span> raw/legacy candidates · <span id="approvedCandidateCount">0</span> previously approved</h3><p id="draftCandidateBreakdown" class="muted">v0.5 material is retained for reference and recomposition. It is no longer presented as the main learning pipeline.</p></div><div class="candidate-card-actions"><button id="reviewLearningCandidates" class="secondary-btn">Open prototype review</button><button id="buildApprovedWorkspace" class="secondary-btn" disabled hidden>Build approved study</button></div></div>
+    </section>
+
+    <section id="view-sourceanalysis" class="view">
+      <div class="section-heading first"><h2>Source Analysis</h2><p>Raw extraction lives here. It is source material, not a finished lesson.</p></div>
+      <div id="sourceAnalysisStats" class="metric-grid"></div>
+      <div class="tool-card source-stage-card"><p class="eyebrow">Pipeline boundary</p><h3>Resource → selected analysis → raw fragments/assets → reconstruction → useful outputs</h3><p class="muted">v0.6.0 creates the staging database and migrates previous deliberate scans into it. New selected scans also enter the staging layer. Fragment reconstruction, embedded-image extraction and full review screens come in the next source-analysis milestones.</p></div>
+      <div id="sourceAnalysisMessage" class="foundation-note"></div>
+    </section>
+
+    <section id="view-create" class="view">
+      <div class="section-heading first"><h2>Learning Authoring</h2><p>CareerBuilder is the intelligence and authoring system. WILearningLabs is the learner-facing delivery system.</p></div>
+      <div class="create-grid">
+        <article class="tool-card create-card"><p class="eyebrow">Manual route</p><h3>Course & Lesson Builder</h3><p>Create modules and lessons deliberately, select source resources, add interactions, assessments and references, then preview before publishing.</p><span class="tag">Structured WI Learning Package</span></article>
+        <article class="tool-card create-card"><p class="eyebrow">AI-assisted route</p><h3>Propose Course from Sources</h3><p>Analyse reviewed material, suggest modules, objectives, activities and assessments, then keep the whole proposal Draft until you approve it.</p><span class="tag">Human approval required</span></article>
+        <article class="tool-card create-card"><p class="eyebrow">Focused output</p><h3>Revision / Quiz / Test Factory</h3><p>Create small, useful learning objects from verified source material rather than dumping the whole archive into the learner experience.</p><span class="tag">Reviewed source only</span></article>
+        <article class="tool-card create-card"><p class="eyebrow">Preserved prototype</p><h3 id="prototypeMaterialTitle">v0.5 Study material</h3><p id="prototypeMaterialMessage">Loading preserved prototype material…</p><div class="card-actions"><button class="secondary-btn" data-go="candidates">Prototype Review</button><button class="secondary-btn" data-go="learning">Prototype Study</button></div></article>
+      </div>
+    </section>
+
+    <section id="view-candidates" class="view">
+      <div class="section-heading first"><h2>Prototype Learning Review</h2><p>Preserved from v0.5 so no work is lost. These extracted candidates are now considered source/prototype material awaiting the v0.6 composition pipeline.</p></div>
+      <div id="candidateStats" class="candidate-stats"></div>
+      <div class="approved-study-callout tool-card prototype-warning"><div><p class="eyebrow">Legacy workflow</p><h3>Approved → Study Builder is frozen as prototype behaviour</h3><p class="muted">Use this only to inspect what v0.5 produced. New v0.6 lesson creation will happen in Lesson Factory after source reconstruction and knowledge review.</p></div><button id="buildApprovedCandidates" class="secondary-btn" hidden>Build Study from Approved</button></div>
+      <div class="candidate-review-toolbar tool-card">
+        <div class="candidate-filter-grid">
+          <input id="candidateSearch" type="search" placeholder="Search candidate text, topic or subtopic…">
+          <select id="candidateStatus"><option value="Draft">Draft</option><option value="Compare">Needs comparison</option><option value="Approved">Approved</option><option value="Used">Used in study</option><option value="Rejected">Rejected</option><option value="">All statuses</option></select>
+          <select id="candidateType"><option value="">All candidate types</option><option>Question</option><option>Formula</option><option>Definition</option><option value="LessonIdea">Lesson idea</option><option>Practical</option><option>Safety</option></select>
+          <select id="candidateLearningSubject"><option value="">All ONC subjects</option></select>
+          <button id="refreshCandidates" class="secondary-btn">Refresh</button>
+        </div>
+        <div class="candidate-bulk-row">
+          <label class="check-label"><input id="selectAllCandidates" type="checkbox"> Select all shown</label><span id="selectedCandidateCount" class="muted">0 selected</span>
+          <div class="candidate-bulk-actions"><button id="approveCandidates" class="secondary-btn" disabled>Approve</button><button id="draftCandidates" class="secondary-btn" disabled>Return to Draft</button><button id="rejectCandidates" class="danger-btn" disabled>Reject</button></div>
+        </div>
+        <div class="candidate-target-row"><label>Prototype target<select id="candidateTargetModule"><option value="">Choose a preserved prototype module…</option></select></label><span class="muted">This is retained for inspection only; new v0.6 composition will use the source-analysis staging layer.</span></div>
+      </div>
+      <div id="candidateSummary" class="muted"></div>
+      <div id="candidateList" class="candidate-list"></div>
+    </section>
+
+    <section id="view-learning" class="view">
+      <div class="section-heading first"><h2>Prototype Study Material</h2><p>These v0.5 modules are preserved as <strong>Needs Recomposition</strong>. They are not treated as finished v0.6 lessons.</p></div>
+      <div class="learning-layout">
+        <div>
+          <div class="learning-toolbar"><button id="refreshModules" class="secondary-btn">Refresh prototype modules</button><button id="checkStudyClassification" class="secondary-btn">Check classification <span id="classificationIssueCount">0</span></button><button id="reviewBlockComparisons" class="secondary-btn">Review similarities <span id="blockComparisonCount">0</span></button><span class="muted">Preserved so we can reuse the source relationships and learn from the prototype.</span></div>
+          <div id="moduleList" class="module-list"></div>
+        </div>
+        <div id="moduleWorkspace" class="tool-card learning-workspace empty-workspace">
+          <h3>No prototype module selected</h3><p class="muted">Open one to inspect what v0.5 created. The future Lesson Factory will compose proper lessons from staged source material instead of raw snippets.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-projects" class="view">
+      <div class="section-heading first"><h2>Projects</h2><p>First-class practical workspaces linking project resources, private engineering journals and later reusable evidence.</p></div>
+      <div id="projectStats" class="metric-grid"></div>
+      <div class="career-product-grid">
+        <article class="tool-card"><p class="eyebrow">New project</p><h3>Create project workspace</h3><div class="stack-form"><input id="projectName" placeholder="Project name"><input id="projectCategory" placeholder="Category, e.g. Engineering"><textarea id="projectSummary" placeholder="What is this project trying to achieve?"></textarea><label>Privacy<select id="projectPrivacy"><option>Private</option><option>Local</option><option>Portfolio eligible</option><option>WebAllowed</option></select></label><label class="check-row"><input id="projectNoWeb" type="checkbox" checked> No web access</label><button id="createCareerProject" class="primary-btn">Create project</button></div></article>
+        <article class="tool-card"><p class="eyebrow">Evidence-safe workspace</p><h3>Failures stay useful</h3><p>Project journals retain tests, troubleshooting, failed attempts and decisions privately. A project does not become CV evidence merely because files exist.</p><span class="tag">User approval required later</span></article>
+      </div>
+      <div class="section-heading"><h2>My Projects</h2><p>Database-backed project records. Original files remain where they are; projects link to resources rather than moving them.</p></div>
+      <div id="careerProjectList" class="career-record-list"></div>
+      <div id="careerProjectDetail" class="tool-card" hidden></div>
+    </section>
+
+    <section id="view-career" class="view">
+      <div class="section-heading first"><h2>Career & CV</h2><p>A real Career Path is now separate from the knowledge hierarchy.</p></div>
+      <div id="careerFoundationStats" class="metric-grid"></div>
+      <div class="create-grid"><article class="tool-card create-card"><p class="eyebrow">Evidence-first</p><h3>Skills & Evidence</h3><p>Coursework, projects and qualifications can suggest evidence. CareerBuilder must distinguish studied, practised, demonstrated and professional experience.</p><span class="tag">V1 live</span></article><article class="tool-card create-card"><p class="eyebrow">Actual routes</p><h3>Career Paths & Skills Gap</h3><p>Compare accepted evidence against routes such as controls, electronics, software or security without confusing those routes with your archive hierarchy.</p><span class="tag">V1 evidence-safe</span></article><article class="tool-card create-card"><p class="eyebrow">Evidence-backed</p><h3>CV Builder</h3><p>Draft CV statements only from evidence you review and accept, with traceability back to coursework, projects and qualifications.</p><span class="tag">V1 multi-CV</span></article></div>
+    </section>
+
+    <section id="view-export" class="view">
+      <div class="section-heading first"><h2>WILearningLabs Export</h2><p>CareerBuilder creates structured WI Learning Packages. LearningLabs imports and delivers them online or from an offline cache.</p></div>
+      <div class="create-grid"><article class="tool-card create-card"><p class="eyebrow">Shared contract</p><h3>WI Learning Package</h3><p>Export reviewed course metadata, modules, lessons, activities, question banks, assessments, assets, references and provenance into a portable package that a database-driven LearningLabs can import and cache offline.</p><span class="tag">Package contract v0.1</span></article><article class="tool-card create-card"><p class="eyebrow">Career output</p><h3>CV / Portfolio</h3><p>Export evidence-backed CV and portfolio material after review.</p><span class="tag">Planned</span></article></div>
+    </section>
+
+    <section id="view-sources" class="view">
+      <div class="section-heading first"><h2>Library Sources</h2><p>Add, rescan, reconnect and verify a source without changing its contents.</p></div>
+      <div class="library-shortcuts"><button id="verifyDatabase" class="secondary-btn">Verify whole database</button><span class="muted">Verification is read-only; repairs are never applied automatically.</span></div>
+      <section id="sourceIntegrityPanel" class="tool-card integrity-panel" hidden></section>
+      <section id="scanAuditPanel" class="tool-card integrity-panel scan-audit-panel" hidden></section>
+      <div class="source-layout">
+        <div class="tool-card">
+          <h3>Add source</h3>
+          <label>Friendly name<input id="sourceName" value="ONC Engineering" placeholder="e.g. ONC Engineering"></label>
+          <label>Subject<input id="sourceSubject" value="Engineering" placeholder="e.g. Engineering"></label>
+          <label>Course / source level<input id="sourceCourseLevel" value="ONC" placeholder="e.g. ONC, HNC, Degree"></label>
+          <label>Folder<div class="folder-row"><input id="sourcePath" readonly placeholder="Choose a folder…"><button id="chooseFolder" class="secondary-btn">Choose</button></div></label>
+          <label>Extra excluded folders <small>Optional manual overrides. One relative path per line.</small><textarea id="sourceExclusions" rows="5" placeholder="Example: old installer backup"></textarea></label>
+          <button id="saveSource" class="primary-btn">Add source</button>
+          <p class="mini-note"><strong>Discovery policy before deep scan:</strong> application/source/configuration formats are excluded by type. High-confidence learning branches such as schematics, datasheets, worksheets, formulas, cheat sheets, components and motors can include their images automatically. Archives with unknown contents stay in Review; obvious software archives are auto-excluded and archive companions can be linked to an already included resource. Old HTML courseware is grouped into <strong>Learning Collection</strong> candidates instead of flooding Needs decision. Generated infrastructure folders such as <code>.git</code>, <code>node_modules</code>, <code>vendor</code>, <code>bin</code> and <code>obj</code> are skipped.</p>
+        </div>
+        <div>
+          <div id="sourceList" class="source-list"></div>
+          <section id="excludedPanel" class="tool-card excluded-panel" hidden>
+            <div class="excluded-heading"><div><p class="eyebrow">Discovery review & cleanup</p><h3>Decide what WICareerBuilder keeps</h3></div><button id="closeExcludedPanel" class="secondary-btn">Close</button></div>
+            <div class="review-filter-row">
+              <label>Show<select id="reviewState"><option value="Pending">Needs review</option><option value="Collections">Learning Collections</option><option value="Archives">Archives awaiting inspection</option><option value="AutoExcluded">Auto excluded</option><option value="KeptExcluded">Manually excluded</option><option value="Included">Manually included</option><option value="All">All excluded/review records</option></select></label>
+              <button id="refreshReview" class="secondary-btn">Refresh review</button>
+              <button id="rerunDiscoveryRules" class="secondary-btn">Re-run rules</button>
+            </div>
+            <div id="reviewStats" class="review-stats" aria-live="polite"></div>
+            <section id="reviewOperationSummary" class="review-operation-summary" hidden aria-live="polite">
+              <div class="review-operation-head"><div><p class="eyebrow">Last discovery operation</p><strong id="reviewOperationTitle">Rules re-applied</strong></div><span id="reviewOperationTime" class="muted"></span></div>
+              <div id="reviewOperationStats" class="review-operation-stats"></div>
+            </section>
+            <p id="excludedSummary" class="muted"></p>
+            <div id="reviewBulkBar" class="review-bulk-bar">
+              <label class="check-label"><input id="selectAllReview" type="checkbox"> Select all shown</label>
+              <span id="selectedReviewCount" class="muted">0 selected</span>
+              <div class="review-bulk-actions">
+                <button id="includeSelectedReview" class="secondary-btn" disabled>Include selected</button>
+                <button id="excludeSelectedReview" class="secondary-btn" disabled>Keep excluded</button>
+                <button id="addCollectionSelected" class="secondary-btn" disabled>Add parent as Learning Collection</button>
+                <button id="purgeSelectedReview" class="danger-btn" disabled>Purge from catalogue</button>
+              </div>
+            </div>
+            <div id="reviewSafetyNote" class="review-safety-note"><strong>Drive safety:</strong> Include/Exclude/Purge only changes WICareerBuilder's SQLite catalogue. Purge never deletes the real file. A tiny exclusion rule is retained so a future discovery does not immediately bring purged software back.</div>
+            <div id="excludedList" class="excluded-list"></div>
+            <div id="collectionCandidateSection" class="collection-candidate-section">
+              <div class="excluded-heading"><div><p class="eyebrow">Learning Collections</p><h3>Collection candidates</h3></div></div>
+              <p class="muted">Detected collections manage their internal files as one package, so hundreds of buttons, equations, images and other courseware assets do not flood the normal Needs decision queue. Importing/viewing the educational package remains a later reusable component.</p>
+              <div id="collectionCandidateList" class="collection-candidate-list"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-updates" class="view">
+      <div class="section-heading first"><h2>Update Centre</h2><p>Installed builds can validate and apply WICareerBuilder update packages without requiring Bash.</p></div>
+      <div class="tool-card update-card">
+        <div class="update-head"><div><p class="eyebrow">WICareerBuilder</p><h3 id="updateVersion">Current version</h3><p id="updateMessage" class="muted"></p></div><span id="updateInstallState" class="tag"></span></div>
+        <div class="update-actions"><button id="checkUpdates" class="secondary-btn">Check for updates</button><button id="installUpdatePackage" class="primary-btn">Install update package</button></div>
+        <div id="stagedUpdate" class="scan-suggestion" hidden></div>
+        <div class="analysis-note"><strong>Safe update model</strong><p>Personal data lives under LocalAppData/WICareerBuilder, separate from replaceable program files. A package is validated and staged first; installed builds back up the database/application and run migrations before the new version is accepted.</p></div>
+      </div>
+    </section>
+
+    <section id="view-about" class="view">
+      <div class="tool-card about-card branded-about">
+        <div class="about-lockup"><img src="assets/wicareerbuilder-mark.svg" alt=""><div><span class="pill">WICareerBuilder <span id="aboutVersion">v1.0.0</span></span><h2>Your Learning · Your Evidence · Your Career.</h2></div></div>
+        <p>WICareerBuilder is a local-first career evidence workbench. It organises learning material, preserves projects and troubleshooting history, separates genuine evidence from qualifications, enforces explicit CV approval, supports multiple career-specific CVs, and keeps private/no-web material behind an external-processing boundary.</p>
+        <div class="rule-grid">
+          <div><strong>Original files</strong><span>Never silently moved, renamed, rewritten or deleted.</span></div>
+          <div><strong>Personal data</strong><span>SQLite stored separately from replaceable application files.</span></div>
+          <div><strong>Evidence truth</strong><span>Learning and internal quizzes do not automatically become qualifications.</span></div>
+          <div><strong>Privacy</strong><span>Private/no-web material is denied at the lower external-processing boundary.</span></div>
+          <div><strong>CV approval</strong><span>Recommended evidence still requires explicit user approval before CV use.</span></div>
+          <div><strong>Product status</strong><span>V1 engineering release verified; product closure evidence lives with this release.</span></div>
+        </div>
+        <p id="dataPath" class="mini-note"></p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="analysisModal" class="modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close-analysis></div>
+  <section class="analysis-panel" role="dialog" aria-modal="true" aria-labelledby="analysisTitle">
+    <div class="analysis-header">
+      <div><p class="eyebrow">Manual resource scan</p><h2 id="analysisTitle">Resource analysis</h2><p id="analysisSubtitle" class="muted"></p></div>
+      <button class="icon-btn" data-close-analysis aria-label="Close">×</button>
+    </div>
+    <div id="analysisBody" class="analysis-body"></div>
+    <div class="analysis-footer"><button id="organiseFromAnalysis" class="secondary-btn">Organise resource</button><button id="rescanResource" class="secondary-btn">Rescan resource</button><button class="primary-btn" data-close-analysis>Close</button></div>
+  </section>
+</div>
+
+<div id="organisationModal" class="modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close-organisation></div>
+  <section class="organisation-panel" role="dialog" aria-modal="true" aria-labelledby="organisationTitle">
+    <div class="analysis-header">
+      <div><p class="eyebrow">Organise resource</p><h2 id="organisationTitle">Resource</h2><p id="organisationPath" class="muted"></p></div>
+      <button class="icon-btn" data-close-organisation aria-label="Close">×</button>
+    </div>
+    <div class="organisation-body">
+      <div class="organisation-grid">
+        <label>Overall subject<input id="organisationSubject" readonly></label>
+        <label>Course / level<input id="organisationCourseLevel" readonly></label>
+        <label>Knowledge subject<input id="organisationLearningSubject" list="learningSubjectOptions" placeholder="e.g. Engineering Mathematics"></label>
+        <datalist id="learningSubjectOptions">
+          <option value="Engineering Mathematics"></option><option value="Electrical Principles"></option><option value="Electronics"></option><option value="Components"></option><option value="Electrical Machines"></option><option value="PLC & Control"></option><option value="RF & Communications"></option><option value="Test & Measurement"></option><option value="Health & Safety"></option><option value="Projects"></option>
+        </datalist>
+        <label>Topic<input id="organisationTopic" placeholder="e.g. AC circuits"></label>
+        <label>Subtopic<input id="organisationSubtopic" placeholder="e.g. Three-phase power"></label>
+        <label>Legacy resource classification<select id="organisationType">
+          <option>Unknown</option><option>Teaching Presentation</option><option>Worksheet / Exercises</option><option>Course Notes / Exercises</option><option>Interactive / Calculation Sheet</option><option>Revision Material</option><option>Old Assignment</option><option>Project Material</option><option>Datasheet</option><option>Manual / Technical Reference</option><option>Reference Document</option><option>Reference Material</option><option>Spreadsheet Reference</option><option>Book / Textbook</option><option>Book / Reference</option><option>Formula / Cheat Sheet</option><option>Standard / Regulation</option><option>Report</option><option>Other</option>
+        </select></label>
+        <label>Use / archive status<select id="organisationStatus"><option>Unsorted</option><option>Useful</option><option>Study later</option><option>Reference</option><option>Ignore</option></select></label>
+      </div>
+      <div id="scanSuggestion" class="scan-suggestion" hidden></div>
+      <label class="organisation-notes">Notes<textarea id="organisationNotes" rows="6" placeholder="Why is this useful? What should you revisit? Anything you want to remember about it?"></textarea></label>
+      <div class="analysis-note"><strong>Organisation is virtual.</strong><p>Saving here only changes WICareerBuilder's SQLite catalogue. Your original file, folder name and location are not changed. v0.6 also mirrors this primary organisation into the many-to-many Knowledge Map; additional knowledge links and resource roles can coexist later.</p></div>
+    </div>
+    <div class="analysis-footer"><button id="createStudyModule" class="secondary-btn" hidden>Prototype study module</button><button class="secondary-btn" data-close-organisation>Cancel</button><button id="saveOrganisation" class="primary-btn">Save organisation</button></div>
+  </section>
+</div>
+
+
+
+<div id="candidateEditModal" class="modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close-candidate-edit></div>
+  <section class="organisation-panel" role="dialog" aria-modal="true" aria-labelledby="candidateEditTitle">
+    <div class="analysis-header"><div><p class="eyebrow">Review learning candidate</p><h2 id="candidateEditTitle">Edit candidate</h2><p class="muted">Editing changes WICareerBuilder's draft candidate only. The source file remains untouched.</p></div><button class="icon-btn" data-close-candidate-edit aria-label="Close">×</button></div>
+    <div class="organisation-body">
+      <label>Title<input id="candidateEditTitleInput"></label>
+      <label class="organisation-notes">Candidate content<textarea id="candidateEditBody" rows="7"></textarea></label>
+      <div class="organisation-grid"><label>Learning subject<input id="candidateEditSubject" list="learningSubjectOptions"></label><label>Topic<input id="candidateEditTopic"></label><label>Subtopic<input id="candidateEditSubtopic"></label></div>
+      <div class="analysis-note"><strong>Duplicate gate</strong><p>Saving checks the candidate database for an exact equivalent in the same ONC subject before accepting the edit.</p></div>
+    </div>
+    <div class="analysis-footer"><button class="secondary-btn" data-close-candidate-edit>Cancel</button><button id="saveCandidateEdit" class="primary-btn">Save candidate</button></div>
+  </section>
+</div>
+
+<div id="approvedStudyModal" class="modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close-approved-study></div>
+  <section class="organisation-panel approved-study-panel" role="dialog" aria-modal="true" aria-labelledby="approvedStudyTitle">
+    <div class="analysis-header"><div><p class="eyebrow">Approved → Study Builder</p><h2 id="approvedStudyTitle">Build Draft study</h2><p class="muted">Review the proposed lesson groups before anything is created. Existing-learning and block-level duplicate gates remain active.</p></div><button class="icon-btn" data-close-approved-study aria-label="Close">×</button></div>
+    <div class="organisation-body">
+      <div id="approvedStudySummary" class="review-operation-stats"></div>
+      <div class="approved-study-select-row"><label class="check-label"><input id="selectAllApprovedGroups" type="checkbox"> Select all buildable groups</label><span id="selectedApprovedGroupCount" class="muted">0 selected</span></div>
+      <div id="approvedStudyGroups" class="approved-study-groups"></div>
+      <div class="analysis-note"><strong>Draft only.</strong><p>Building creates or enriches Draft Study Builder lessons. Questions also enter the Draft Question Bank and formulas the Draft Formula Library. Nothing is marked Ready automatically, and substantially similar lessons/blocks are left for manual comparison.</p></div>
+    </div>
+    <div class="analysis-footer"><button class="secondary-btn" data-close-approved-study>Cancel</button><button id="buildApprovedStudyNow" class="primary-btn" disabled>Create selected Draft lessons</button></div>
+  </section>
+</div>
+
+<div id="classificationModal" class="modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close-classification></div>
+  <section class="organisation-panel bulk-panel" role="dialog" aria-modal="true" aria-labelledby="classificationModalTitle">
+    <div class="analysis-header"><div><p class="eyebrow">Study quality check</p><h2 id="classificationModalTitle">Classification consistency</h2><p class="muted">Review contradictions such as DC machine material filed under Electrical Principles or DC Machines › AC Machines. Nothing is changed until you approve a repair.</p></div><button class="icon-btn" data-close-classification aria-label="Close">×</button></div>
+    <div class="organisation-body"><div class="candidate-bulk-row"><label class="check-row"><input id="selectAllClassificationIssues" type="checkbox"> Select all shown</label><span id="selectedClassificationCount" class="muted">0 selected</span></div><div id="classificationIssueList" class="candidate-list"></div><div class="analysis-note"><strong>Repair scope</strong><p>A confirmed repair updates the Study Builder lesson, its linked learning candidates and the virtual organisation of resources already linked to that lesson. Original files and folders are never changed.</p></div></div>
+    <div class="analysis-footer"><span id="classificationRepairStatus" class="repair-status muted" aria-live="polite"></span><button class="secondary-btn" data-close-classification>Cancel</button><button id="applyClassificationRepairs" class="primary-btn" disabled>Apply selected repairs</button></div>
+  </section>
+</div>
+
+<div id="blockComparisonModal" class="modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close-block-comparison></div>
+  <section class="organisation-panel bulk-panel" role="dialog" aria-modal="true" aria-labelledby="blockComparisonModalTitle">
+    <div class="analysis-header"><div><p class="eyebrow">Learning similarity review</p><h2 id="blockComparisonModalTitle">Compare similar learning blocks</h2><p class="muted">WICareerBuilder stopped these automatically because the new candidate is substantially similar to learning already in the lesson.</p></div><button class="icon-btn" data-close-block-comparison aria-label="Close">×</button></div>
+    <div class="organisation-body"><div id="blockComparisonList" class="candidate-list"></div><div class="analysis-note"><strong>You decide.</strong><p><strong>Use existing</strong> keeps one block and adds the candidate's source links. <strong>Keep both</strong> deliberately creates the second block. Reject removes only the extracted candidate, never the source file.</p></div></div>
+    <div class="analysis-footer"><button class="primary-btn" data-close-block-comparison>Close</button></div>
+  </section>
+</div>
+
+<div id="blockModal" class="modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close-block></div>
+  <section class="organisation-panel" role="dialog" aria-modal="true" aria-labelledby="blockModalTitle">
+    <div class="analysis-header"><div><p class="eyebrow">Learning block</p><h2 id="blockModalTitle">Add study activity</h2><p class="muted">Build the method and explanation, not just the final answer.</p></div><button class="icon-btn" data-close-block aria-label="Close">×</button></div>
+    <div class="organisation-body">
+      <div class="organisation-grid">
+        <label>Block type<select id="blockType"><option>Explanation</option><option>Formula</option><option>WorkedExample</option><option>PracticeQuestion</option><option>Checkpoint</option></select></label>
+        <label>Title<input id="blockTitle" placeholder="e.g. Rearranging Ohm's Law"></label>
+      </div>
+      <label class="organisation-notes">Teaching text<textarea id="blockBody" rows="4" placeholder="Explain the concept, what is known, or what the learner should notice."></textarea></label>
+      <label class="organisation-notes">Formula / equation<input id="blockFormula" placeholder="e.g. V = I × R"></label>
+      <label class="organisation-notes">Question / learner prompt<textarea id="blockPrompt" rows="3" placeholder="e.g. 24 V is applied across 8 Ω. Find the current."></textarea></label>
+      <div class="organisation-grid">
+        <label>Answer type<select id="blockAnswerKind"><option>None</option><option>Numeric</option><option>Text</option></select></label>
+        <label>Expected answer<input id="blockExpectedAnswer" placeholder="e.g. 3"></label>
+        <label>Numeric tolerance<input id="blockTolerance" type="number" step="any" placeholder="e.g. 0.01"></label>
+        <label>Source page<input id="blockSourcePage" type="number" min="1" placeholder="PDF page"></label>
+        <label>Source end page<input id="blockSourceEndPage" type="number" min="1" placeholder="optional"></label>
+        <label>Video timestamp (seconds)<input id="blockSourceTimestamp" type="number" min="0" placeholder="e.g. 1122"></label>
+      </div>
+      <label class="organisation-notes">Hint<textarea id="blockHint" rows="3" placeholder="A clue that helps without giving the answer away."></textarea></label>
+      <label class="organisation-notes">Worked explanation<textarea id="blockExplanation" rows="5" placeholder="Show how and why the answer is reached, step by step."></textarea></label>
+      <label class="organisation-notes">Source note<input id="blockSourceNote" placeholder="e.g. Example 3 / section on series circuits"></label>
+      <div class="analysis-note"><strong>Source-first learning</strong><p>The module stores a reference to the original resource. PDF page numbers and video timestamps are optional but strongly encouraged where known.</p></div>
+    </div>
+    <div class="analysis-footer"><button class="secondary-btn" data-close-block>Cancel</button><button id="saveLearningBlock" class="primary-btn">Add block</button></div>
+  </section>
+</div>
+
+<div id="bulkModal" class="modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close-bulk></div>
+  <section class="organisation-panel bulk-panel" role="dialog" aria-modal="true" aria-labelledby="bulkModalTitle">
+    <div class="analysis-header"><div><p class="eyebrow">Selected resources</p><h2 id="bulkModalTitle">Prepare resources</h2><p id="bulkModalSubtitle" class="muted"></p></div><button class="icon-btn" data-close-bulk aria-label="Close">×</button></div>
+    <div class="organisation-body"><div id="bulkPreparationSummary" class="review-operation-stats"></div><div id="bulkPreparationList" class="bulk-preparation-list"></div><div class="analysis-note"><strong>Deliberate analysis</strong><p>Only the resources you selected are analysed. PDFs/books remain reference-first unless they already have a saved scan. Generated learning remains Draft, and possible duplicates are not silently merged.</p></div></div>
+    <div class="analysis-footer"><button class="secondary-btn" data-close-bulk>Cancel</button><button id="bulkPrimaryAction" class="primary-btn">Continue</button></div>
+  </section>
+</div>
+
+<div id="toast" class="toast" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>

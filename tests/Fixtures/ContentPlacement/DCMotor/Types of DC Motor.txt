@@ -1,0 +1,1 @@
+Types of dc motor include shunt motor, series motor, compound motor and permanent magnet dc arrangements. Construction vocabulary such as armature winding, field winding, commutator, stator and rotor is included only to compare how the motor types are built and applied.

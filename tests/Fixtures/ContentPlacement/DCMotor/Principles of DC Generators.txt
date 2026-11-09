@@ -1,0 +1,1 @@
+A dc generator converts mechanical energy to electrical energy through generator action and generated emf. These principles describe armature conductors, field flux, commutation and the behaviour of a direct current generator.

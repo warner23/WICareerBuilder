@@ -1,0 +1,1 @@
+The torque equation of a dc motor relates armature current and magnetic flux to developed torque. The material also discusses back emf, torque characteristic, speed torque behaviour and the operating principles of the dc machine.

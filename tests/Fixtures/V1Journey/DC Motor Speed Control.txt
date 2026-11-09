@@ -1,0 +1,3 @@
+DC MOTOR SPEED CONTROL
+
+This practical study explains armature voltage control, field control and the Ward Leonard method for a DC motor. The work considers speed control, back EMF, torque and safe bench testing. A controlled practical build was assembled, measured and reviewed against the intended DC motor speed-control behaviour. The original source remains unchanged and the resulting evidence must still be reviewed and explicitly approved before it can be used in a CV.

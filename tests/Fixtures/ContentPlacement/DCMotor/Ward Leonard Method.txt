@@ -1,0 +1,1 @@
+Ward Leonard speed control is used for a dc motor by varying generator output and armature voltage. The method provides wide-range smooth speed control for direct current machines under changing load conditions.

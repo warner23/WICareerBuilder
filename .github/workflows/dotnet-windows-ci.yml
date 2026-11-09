@@ -1,0 +1,20 @@
+name: CareerBuilder - Windows build and tests
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Restore
+        run: dotnet restore WICareerBuilder.sln
+      - name: Build
+        run: dotnet build WICareerBuilder.sln --configuration Release --no-restore
+      - name: Test (Microsoft.Testing.Platform)
+        run: dotnet test --solution WICareerBuilder.sln --configuration Release --no-build --no-restore

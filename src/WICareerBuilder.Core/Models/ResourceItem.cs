@@ -1,0 +1,26 @@
+namespace WICareerBuilder.Core.Models;
+
+public sealed record ResourceItem(
+    long Id,
+    long LibrarySourceId,
+    string SourceName,
+    string Subject,
+    string CourseLevel,
+    string RelativePath,
+    string FileName,
+    string Extension,
+    long SizeBytes,
+    DateTimeOffset LastWriteUtc,
+    string MediaKind,
+    string ResourceType,
+    string AnalysisStatus,
+    bool IsAvailable,
+    bool IsIgnored,
+    string LearningSubject,
+    string Topic,
+    string Subtopic,
+    string StudyStatus,
+    int RelatedCopyCount = 0,
+    bool HasArchiveCompanion = false,
+    string CatalogueLane = "Learning",
+    string CatalogueLaneReason = "");

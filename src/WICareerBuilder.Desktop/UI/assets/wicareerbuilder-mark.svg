@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="WICareerBuilder mark">
+<rect x="36" y="36" width="440" height="440" rx="92" fill="#071A33"/>
+<path d="M36 300h440v84c0 50-42 92-92 92H128c-50 0-92-42-92-92z" fill="#0A2F59"/>
+<rect x="121" y="183" width="270" height="181" rx="24" fill="none" stroke="#EAF5FF" stroke-width="22"/>
+<path d="M199 183v-40c0-20 16-36 36-36h42c20 0 36 16 36 36v40" fill="none" stroke="#EAF5FF" stroke-width="22" stroke-linecap="round"/>
+<path d="M150 320l74-52 55 27 90-102" fill="none" stroke="#47C9FF" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M363 176l47-6-11 46z" fill="#47C9FF"/>
+<rect x="158" y="303" width="24" height="42" rx="4" fill="#FFFFFF"/>
+<rect x="220" y="282" width="24" height="63" rx="4" fill="#FFFFFF"/>
+<rect x="282" y="250" width="24" height="95" rx="4" fill="#FFFFFF"/>
+</svg>

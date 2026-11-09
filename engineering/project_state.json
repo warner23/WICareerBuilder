@@ -1,0 +1,14 @@
+{
+  "schema": "CB_PERSONAL_GITHUB_CANDIDATE_V1",
+  "name": "WICareerBuilder",
+  "version": "1.0.0",
+  "origin": "WICareerBuilder v1.0.0 engineering source; historical provenance preserved privately",
+  "phase": "REVIEW_ONLY_NOT_PUBLISHED",
+  "test_status": "PENDING_REVERIFY_AFTER_METADATA_CHANGES",
+  "publication": "HOLD_PENDING_OWNER_APPROVAL",
+  "owner_rights": "PROVISIONAL_USER_STATEMENT_UNVERIFIED",
+  "project_licence": "ALL_RIGHTS_RESERVED_NO_OSS_LICENSE_SELECTED",
+  "canonical_modified_by_runner": false,
+  "pinned_original_source_zip_sha256": "20105eea5705e6bc8db9094a3ec04353829aee63ad76ae59bfc58bb8c8afe93f",
+  "review_candidate_only": true
+}
